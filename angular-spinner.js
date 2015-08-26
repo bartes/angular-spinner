@@ -27,15 +27,19 @@
       };
     })
 
-    .factory('usSpinnerService', ['$rootScope', function ($rootScope) {
+    .factory('usSpinnerService', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
       var config = {};
 
       config.spin = function (key) {
-        $rootScope.$broadcast('us-spinner:spin', key);
+        $timeout(function(){
+          $rootScope.$broadcast('us-spinner:spin', key);
+        });
       };
 
       config.stop = function (key) {
-        $rootScope.$broadcast('us-spinner:stop', key);
+        $timeout(function(){
+          $rootScope.$broadcast('us-spinner:stop', key);
+        });
       };
 
       return config;
